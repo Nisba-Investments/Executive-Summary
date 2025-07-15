@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NISBA Executive Summary - Halal Investment Education Platform</title>
+    <title>NISBA Business Plan - Comprehensive Strategy</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -45,8 +45,10 @@
         .header {
             background: var(--white);
             box-shadow: var(--shadow);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
         }
 
@@ -81,11 +83,11 @@
             cursor: pointer;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--primary-blue);
         }
 
-        .demo-badge {
+        .business-plan-badge {
             background: var(--accent-gold);
             color: white;
             padding: 0.5rem 1rem;
@@ -94,31 +96,24 @@
             font-weight: bold;
         }
 
-        /* Mobile Navigation */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--warm-gray);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+        /* Main Content */
+        .main {
+            margin-top: 80px;
+            padding: 2rem 0;
         }
 
-        .mobile-menu-toggle:hover {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-        }
-
-        /* Islamic Design Elements */
-        .islamic-pattern {
+        .hero-section {
+            background: var(--white);
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .islamic-pattern::before {
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -130,22 +125,7 @@
             z-index: -1;
         }
 
-        /* Main Content */
-        .main {
-            padding: 2rem 0;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            text-align: center;
-            padding: 4rem 0;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 3rem;
-        }
-
-        .hero-content h1 {
+        .hero-title {
             font-size: 3rem;
             margin-bottom: 1rem;
             background: var(--gradient);
@@ -154,68 +134,113 @@
             background-clip: text;
         }
 
-        .hero-content .subtitle {
-            font-size: 1.3rem;
+        .hero-subtitle {
+            font-size: 1.2rem;
             color: var(--light-gray);
             margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .funding-highlight {
-            background: var(--light-blue);
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--primary-blue);
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-
-        .funding-amount {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .funding-purpose {
-            color: var(--warm-gray);
-            font-size: 1.1rem;
-        }
-
-        /* Section Styles */
-        .section {
+        /* Table of Contents */
+        .toc-container {
             background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: 15px;
             box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
+            margin: 2rem 0;
         }
 
-        .section:hover {
+        .toc-title {
+            font-size: 1.5rem;
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toc-item:hover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
+        }
+
+        .toc-item.active {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        .toc-icon {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            min-width: 24px;
+        }
+
+        .toc-content h4 {
+            margin: 0 0 0.25rem 0;
+            color: var(--warm-gray);
+        }
+
+        .toc-content p {
+            margin: 0;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections - Enhanced isolation */
+        .content-section {
+            display: none !important;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
         }
 
         .section-header {
             display: flex;
             align-items: center;
+            gap: 1rem;
             margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #E5E7EB;
         }
 
         .section-icon {
-            background: var(--gradient);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            background: var(--light-blue);
+            padding: 1rem;
+            border-radius: 10px;
         }
 
         .section-title {
@@ -224,396 +249,111 @@
             margin: 0;
         }
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--warm-gray);
-            font-weight: 600;
-        }
-
-        /* Problem/Solution Grid */
-        .problem-solution-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .problem-card, .solution-card {
-            padding: 2rem;
-            border-radius: 15px;
-        }
-
-        .problem-card {
-            background: #fef3f2;
-            border-left: 5px solid #ef4444;
-        }
-
-        .solution-card {
-            background: #f0fdf4;
-            border-left: 5px solid var(--success-green);
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .problem-card .card-title {
-            color: #dc2626;
-        }
-
-        .solution-card .card-title {
-            color: #059669;
-        }
-
-        /* Feature List */
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            background: var(--light-blue);
-            transform: translateY(-2px);
-        }
-
-        .feature-icon {
-            background: var(--primary-blue);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .feature-content h4 {
-            margin: 0 0 0.5rem 0;
-            color: var(--warm-gray);
-        }
-
-        .feature-content p {
+        .section-subtitle {
+            color: var(--light-gray);
+            font-size: 1.1rem;
             margin: 0;
-            color: var(--light-gray);
-            font-size: 0.9rem;
         }
 
-        /* Business Model Grid */
-        .business-model-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 1024px) {
-            .business-model-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .business-model-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
-
-        .revenue-stream {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 15px;
-            border-top: 4px solid var(--primary-blue);
-            transition: all 0.3s ease;
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .revenue-stream:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .stream-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .price-range {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--warm-gray);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .stream-description {
-            color: var(--light-gray);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .revenue-stream {
-                padding: 1.5rem;
-                min-height: 160px;
-                text-align: center;
-            }
-            
-            .stream-title {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .price-range {
-                font-size: 1.8rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .stream-description {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .revenue-stream {
-                padding: 1.2rem;
-                min-height: 140px;
-            }
-            
-            .stream-title {
-                font-size: 1rem;
-                margin-bottom: 0.6rem;
-            }
-            
-            .price-range {
-                font-size: 1.5rem;
-                margin-bottom: 0.6rem;
-            }
-            
-            .stream-description {
-                font-size: 0.85rem;
-                line-height: 1.3;
-            }
-        }
-
-        /* Financial Table */
+        /* Financial Projections Table */
         .financial-table {
             overflow-x: auto;
             margin: 2rem 0;
-            -webkit-overflow-scrolling: touch;
         }
 
-        .table {
+        .financial-table table {
             width: 100%;
             border-collapse: collapse;
             background: var(--white);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            min-width: 500px;
         }
 
-        .table th,
-        .table td {
+        .financial-table th,
+        .financial-table td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #E5E7EB;
         }
 
-        .table th {
-            background: var(--primary-blue);
-            color: white;
-            font-weight: 600;
-        }
-
-        .table tr:hover {
+        .financial-table th {
             background: var(--light-blue);
-        }
-
-        .table .number {
-            font-weight: bold;
             color: var(--primary-blue);
-        }
-
-        /* Mobile Financial Cards */
-        .mobile-financial-cards {
-            display: none;
-        }
-
-        .financial-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-blue);
-        }
-
-        .financial-card-header {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .financial-metric {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .financial-metric:last-child {
-            border-bottom: none;
-        }
-
-        .metric-label {
             font-weight: 600;
-            color: var(--warm-gray);
+        }
+
+        .financial-table tr:hover {
+            background: #F8F9FA;
         }
 
         .metric-value {
             font-weight: bold;
             color: var(--primary-blue);
-            font-size: 1.1rem;
         }
 
-        /* Table Toggle Controls */
-        .table-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+        .metric-positive {
+            color: var(--success-green);
         }
 
-        .view-toggle {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .view-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--primary-blue);
-            background: transparent;
-            color: var(--primary-blue);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .view-btn.active,
-        .view-btn:hover {
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        .chart-view {
-            display: none;
-            text-align: center;
-            padding: 3rem;
-            background: #f8fafc;
-            border-radius: 15px;
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
-        .chart-placeholder {
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
             color: var(--primary-blue);
+            margin-bottom: 1rem;
         }
 
-        /* Section Collapsible */
-        .section-collapsible {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            padding: 1rem;
-            background: var(--light-blue);
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
             color: var(--primary-blue);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .section-collapsible:hover {
-            background: var(--primary-blue);
-            color: white;
+        .stat-label {
+            color: var(--light-gray);
+            font-size: 0.9rem;
         }
 
-        /* Team Section */
+        /* Team Grid */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .team-member {
-            background: #f8fafc;
+            background: var(--white);
             padding: 2rem;
             border-radius: 15px;
+            box-shadow: var(--shadow);
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
         }
 
         .member-avatar {
@@ -636,7 +376,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .member-title {
+        .member-role {
             color: var(--primary-blue);
             font-weight: 600;
             margin-bottom: 1rem;
@@ -645,358 +385,379 @@
         .member-bio {
             color: var(--light-gray);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        /* Competitive Advantages */
-        .advantage-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* Business Model Cards */
+        .business-model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
-        .advantage-item {
+        .revenue-stream {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .revenue-stream:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stream-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-gold);
-        }
-
-        .advantage-number {
-            background: var(--accent-gold);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .advantage-text {
-            color: var(--warm-gray);
-            font-weight: 600;
-        }
-
-        /* Milestone Boxes */
-        .milestone-box {
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .milestone-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        /* Investment Reason Items */
-        .investment-reason-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .investment-reason-item:hover {
-            background: var(--light-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-            padding: 3rem;
-            border-radius: 20px;
-            margin-top: 3rem;
-        }
-
-        .contact-title {
-            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
+        .stream-icon {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
         }
 
-        .contact-item {
+        .stream-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--warm-gray);
+        }
+
+        .stream-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin: 1rem 0;
+        }
+
+        .stream-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stream-features li {
+            padding: 0.5rem 0;
+            color: var(--light-gray);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
+        .stream-features li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: bold;
+        }
+
+        /* Competitive Advantage Cards */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
             box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateY(20px);
+            text-align: center;
             transition: all 0.3s ease;
-            z-index: 1000;
+            border: 2px solid transparent;
+        }
+
+        .advantage-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .advantage-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .advantage-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .advantage-description {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Risk Assessment */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .risk-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .risk-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .risk-icon {
+            font-size: 1.5rem;
+            color: #EF4444;
+        }
+
+        .risk-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--warm-gray);
+        }
+
+        .risk-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #FEF2F2;
+            border-radius: 8px;
+            border-left: 3px solid #EF4444;
+        }
+
+        .risk-name {
+            font-weight: 600;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-mitigation {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Interactive Elements */
+        .interactive-chart {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--light-blue);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            border: 2px dashed var(--primary-blue);
+        }
+
+        /* Progress Indicators */
+        .milestone-timeline {
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-date {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        .section-nav {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary-blue);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            background: var(--light-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Full Version Button */
+        .full-version-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+        }
+
+        .full-version-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .full-version-btn i {
+            font-size: 0.8rem;
+        }
+        .text-content {
+            color: var(--warm-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-content h3 {
+            color: var(--warm-gray);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .text-content h4 {
+            color: var(--primary-blue);
+            margin: 1.5rem 0 1rem 0;
             font-size: 1.2rem;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .text-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
         }
 
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+        .text-content li {
+            margin-bottom: 0.5rem;
+            color: var(--light-gray);
         }
 
-        /* Mobile Responsiveness */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+                flex-wrap: wrap;
             }
 
             .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: var(--shadow);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                z-index: 1000;
+                gap: 1rem;
+                flex-wrap: wrap;
             }
 
-            .nav-links.mobile-open {
-                transform: translateY(0);
-                opacity: 1;
-            }
-
-            .nav-links a {
-                padding: 1rem 0;
-                border-bottom: 1px solid #E5E7EB;
-                font-size: 1.1rem;
-            }
-
-            .nav-links a:last-child {
-                border-bottom: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-                line-height: 1.2;
+            .hero-title {
+                font-size: 2rem;
             }
 
             .section-title {
                 font-size: 1.5rem;
             }
 
-            .stat-number {
-                font-size: 2rem;
+            .toc-grid {
+                grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 2rem 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
+            .stats-grid,
+            .team-grid,
+            .business-model-grid {
+                grid-template-columns: 1fr;
             }
 
             .financial-table {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                display: none;
+                font-size: 0.8rem;
             }
 
-            .mobile-financial-cards {
-                display: block;
+            .section-nav {
+                bottom: 1rem;
+                right: 1rem;
             }
 
-            .table {
-                min-width: 600px;
-                font-size: 0.9rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .milestone-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .feature-list,
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .problem-solution-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .contact-details {
+            .timeline-item {
                 flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            .contact-item {
-                background: rgba(255, 255, 255, 0.1);
-                padding: 1rem;
-                border-radius: 8px;
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .hero-section {
-                padding: 2rem 0;
-            }
-
-            .funding-highlight {
-                margin: 1rem auto;
-                padding: 1rem;
-            }
-
-            .funding-amount {
-                font-size: 2rem;
-            }
-
-            /* Mobile Business Model Cards */
-            .revenue-stream {
-                padding: 1.5rem;
                 text-align: center;
             }
 
-            .stream-title {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
+            .timeline-date {
+                min-width: auto;
+                width: 100%;
             }
-
-            .price-range {
-                font-size: 1.6rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .stream-description {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .milestone-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 1.5rem 1rem;
-            }
-
-            .stat-number {
-                font-size: 1.8rem;
-            }
-
-            .funding-amount {
-                font-size: 1.8rem;
-            }
-
-            .back-to-top {
-                bottom: 1rem;
-                right: 1rem;
-                width: 45px;
-                height: 45px;
-            }
-
-            /* Enhanced Mobile Business Model */
-            .revenue-stream {
-                padding: 1.2rem;
-                margin-bottom: 1rem;
-            }
-
-            .stream-title {
-                font-size: 1rem;
-                margin-bottom: 0.6rem;
-                line-height: 1.3;
-            }
-
-            .price-range {
-                font-size: 1.4rem;
-                margin-bottom: 0.6rem;
-            }
-
-            .stream-description {
-                font-size: 0.85rem;
-                line-height: 1.3;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Focus Management for Accessibility */
-        .nav-links a:focus,
-        .section:focus,
-        .back-to-top:focus {
-            outline: 3px solid var(--accent-gold);
-            outline-offset: 2px;
         }
     </style>
 </head>
@@ -1004,18 +765,12 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">NISBA</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a onclick="scrollToSection('overview')">Overview</a></li>
-                <li><a onclick="scrollToSection('market')">Market</a></li>
-                <li><a onclick="scrollToSection('solution')">Solution</a></li>
-                <li><a onclick="scrollToSection('business-model')">Business Model</a></li>
-                <li><a onclick="scrollToSection('team')">Team</a></li>
-                <li><a onclick="scrollToSection('financials')">Financials</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
-                <li><div class="demo-badge">EXECUTIVE SUMMARY</div></li>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('executive-summary')" class="active">Executive Summary</a></li>
+                <li><a href="#" onclick="showSection('market-analysis')">Market Analysis</a></li>
+                <li><a href="#" onclick="showSection('financials')">Financials</a></li>
+                <li><a href="#" onclick="showSection('team')">Team</a></li>
+                <li><div class="business-plan-badge">BUSINESS PLAN 2025</div></li>
             </ul>
         </nav>
     </header>
@@ -1023,821 +778,1878 @@
     <main class="main">
         <div class="container">
             <!-- Hero Section -->
-            <section class="hero-section islamic-pattern">
-                <div class="hero-content">
-                    <h1>NISBA</h1>
-                    <p style="font-size: 1.5rem; color: var(--warm-gray); margin-bottom: 0.5rem;">Halal Investment Education & Coaching Platform</p>
-                    <p class="subtitle">Executive Summary</p>
-                    <div class="funding-highlight">
-                        <div class="funding-amount">£750,000</div>
-                        <div class="funding-purpose">Seed Round - Platform Development & Market Launch</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Company Overview -->
-            <section id="overview" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h2 class="section-title">Company Overview</h2>
-                </div>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">NISBA is a comprehensive digital platform that democratizes Islamic finance education and provides personalized coaching for halal investing. We combine expert education, practical tools, and one-on-one coaching to help Muslims build wealth while staying true to their values.</p>
-            </section>
-
-            <!-- Market Opportunity -->
-            <section id="market" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h2 class="section-title">Market Opportunity</h2>
-                </div>
-                
-                <div class="stats-grid">
+            <div class="hero-section">
+                <h1 class="hero-title">NISBA Business Plan</h1>
+                <p class="hero-subtitle">Halal Investment Education & Coaching Platform - Comprehensive Strategy 2025-2027</p>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
                     <div class="stat-card">
-                        <div class="stat-number">£2.4T</div>
-                        <div class="stat-label">Global Islamic finance market growing at 15% annually</div>
+                        <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                        <div class="stat-value">£2.4T</div>
+                        <div class="stat-label">Global Islamic Finance Market</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">25M+</div>
-                        <div class="stat-label">Muslims in Europe seeking Shariah-compliant investment options</div>
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-value">25M+</div>
+                        <div class="stat-label">Muslims in Europe</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">£50B+</div>
-                        <div class="stat-label">In assets under management by UK Islamic finance institutions</div>
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-value">£3.8M</div>
+                        <div class="stat-label">Year 3 Revenue Target</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">78%</div>
-                        <div class="stat-label">Of Muslims avoid investing due to lack of halal education</div>
+                        <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-value">78%</div>
+                        <div class="stat-label">Muslims Avoid Investing (Knowledge Gap)</div>
                     </div>
                 </div>
+            </div>
 
-                <div style="background: #fef3c7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b; margin-top: 2rem;">
-                    <strong style="color: #92400e;">Critical Gap:</strong> <span style="color: #92400e;">78% of Muslims avoid investing due to lack of halal education and guidance</span>
-                </div>
-            </section>
-
-            <!-- Problem & Solution -->
-            <section id="solution" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h2 class="section-title">The Problem We Solve</h2>
-                </div>
-
-                <div class="problem-solution-grid">
-                    <div class="problem-card">
-                        <div class="card-title">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            Key Problems
+            <!-- Table of Contents -->
+            <div class="toc-container">
+                <h2 class="toc-title">
+                    <i class="fas fa-list"></i>
+                    Business Plan Navigation
+                </h2>
+                <div class="toc-grid">
+                    <div class="toc-item active" onclick="navigateToSection('executive-summary', this)">
+                        <div class="toc-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="toc-content">
+                            <h4>Executive Summary</h4>
+                            <p>Vision, mission, and key opportunities</p>
                         </div>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <strong style="color: #dc2626; min-width: 20px;">1.</strong>
-                                <span><strong>Knowledge Gap:</strong> Complex Islamic finance principles create barriers to investment</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <strong style="color: #dc2626; min-width: 20px;">2.</strong>
-                                <span><strong>Trust Deficit:</strong> Muslims struggle to identify truly Shariah-compliant investments</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <strong style="color: #dc2626; min-width: 20px;">3.</strong>
-                                <span><strong>Lack of Guidance:</strong> No comprehensive coaching platform for halal investing exists</span>
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem;">
-                                <strong style="color: #dc2626; min-width: 20px;">4.</strong>
-                                <span><strong>Corporate Need:</strong> Companies need inclusive financial wellness programs for Muslim employees</span>
-                            </li>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('company-description', this)">
+                        <div class="toc-icon"><i class="fas fa-building"></i></div>
+                        <div class="toc-content">
+                            <h4>Company Description</h4>
+                            <p>Background, values, and legal structure</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('market-analysis', this)">
+                        <div class="toc-icon"><i class="fas fa-chart-bar"></i></div>
+                        <div class="toc-content">
+                            <h4>Market Analysis</h4>
+                            <p>TAM, SAM, competitive landscape</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('product-technology', this)">
+                        <div class="toc-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="toc-content">
+                            <h4>Product & Technology</h4>
+                            <p>Platform features and tech stack</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('business-model', this)">
+                        <div class="toc-icon"><i class="fas fa-coins"></i></div>
+                        <div class="toc-content">
+                            <h4>Business Model</h4>
+                            <p>Revenue streams and unit economics</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('marketing-sales', this)">
+                        <div class="toc-icon"><i class="fas fa-bullhorn"></i></div>
+                        <div class="toc-content">
+                            <h4>Marketing & Sales</h4>
+                            <p>Go-to-market strategy and channels</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('operations', this)">
+                        <div class="toc-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="toc-content">
+                            <h4>Operations Plan</h4>
+                            <p>Organizational structure and processes</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('team', this)">
+                        <div class="toc-icon"><i class="fas fa-users"></i></div>
+                        <div class="toc-content">
+                            <h4>Management Team</h4>
+                            <p>Leadership and advisory board</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('financials', this)">
+                        <div class="toc-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="toc-content">
+                            <h4>Financial Projections</h4>
+                            <p>3-year forecasts and metrics</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('funding', this)">
+                        <div class="toc-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <div class="toc-content">
+                            <h4>Funding Requirements</h4>
+                            <p>Investment needs and use of funds</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('risk-analysis', this)">
+                        <div class="toc-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="toc-content">
+                            <h4>Risk Analysis</h4>
+                            <p>Risk factors and mitigation strategies</p>
+                        </div>
+                    </div>
+                    <div class="toc-item" onclick="navigateToSection('growth-strategy', this)">
+                        <div class="toc-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                        <div class="toc-content">
+                            <h4>Growth Strategy</h4>
+                            <p>Expansion roadmap and milestones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <div id="executive-summary" class="content-section active">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-rocket"></i></div>
+                        <div style="flex: 1;">
+                            <h2 class="section-title">Executive Summary</h2>
+                            <p class="section-subtitle">Revolutionizing Islamic finance education through technology and expertise</p>
+                        </div>
+                        <a href="https://nisba-investments.github.io/Executive-Summary/" target="_blank" class="full-version-btn">
+                            <i class="fas fa-external-link-alt"></i> Full Version
+                        </a>
+                    </div>
+
+                    <div class="text-content">
+                        <p>NISBA is revolutionizing Islamic finance education by combining expert coaching, practical tools, and cutting-edge technology. Our platform addresses the critical gap in halal investment education, serving both individual Muslims seeking Shariah-compliant wealth building and corporations requiring inclusive financial wellness programs.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                            <div class="stat-value">Mission</div>
+                            <div class="stat-label">Democratize halal investing through education, technology, and personalized guidance</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                            <div class="stat-value">Vision</div>
+                            <div class="stat-label">Become the global leader in Islamic finance education and coaching</div>
+                        </div>
+                    </div>
+
+                    <div class="financial-table">
+                        <h3>3-Year Financial Projections</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Year 1</th>
+                                    <th>Year 2</th>
+                                    <th>Year 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Revenue</td>
+                                    <td class="metric-value">£285K</td>
+                                    <td class="metric-value">£1.2M</td>
+                                    <td class="metric-value">£3.8M</td>
+                                </tr>
+                                <tr>
+                                    <td>Users</td>
+                                    <td class="metric-value">1,200</td>
+                                    <td class="metric-value">8,500</td>
+                                    <td class="metric-value">25,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Corporate Clients</td>
+                                    <td class="metric-value">5</td>
+                                    <td class="metric-value">25</td>
+                                    <td class="metric-value">75</td>
+                                </tr>
+                                <tr>
+                                    <td>Coaches</td>
+                                    <td class="metric-value">8</td>
+                                    <td class="metric-value">35</td>
+                                    <td class="metric-value">120</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-content">
+                        <h3>Funding Requirements</h3>
+                        <p><strong>£750,000 Seed Round</strong> for:</p>
+                        <ul>
+                            <li>Platform development (40%)</li>
+                            <li>Content creation & scholar partnerships (25%)</li>
+                            <li>Marketing & customer acquisition (20%)</li>
+                            <li>Team expansion (15%)</li>
                         </ul>
                     </div>
 
-                    <div class="solution-card">
-                        <div class="card-title">
-                            <i class="fas fa-check-circle"></i>
-                            Our Solution
+                    <div class="section-card" style="background: var(--light-blue); margin-top: 2rem;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Why Invest in NISBA?</h3>
+                        <div class="advantage-grid">
+                            <div class="advantage-card" style="border: none; box-shadow: none;">
+                                <div class="advantage-icon"><i class="fas fa-globe-americas"></i></div>
+                                <div class="advantage-title">Massive Market</div>
+                                <div class="advantage-description">Underserved £2.4T Islamic finance opportunity</div>
+                            </div>
+                            <div class="advantage-card" style="border: none; box-shadow: none;">
+                                <div class="advantage-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="advantage-title">Proven Demand</div>
+                                <div class="advantage-description">Strong interest validation through existing 400+ educational videos</div>
+                            </div>
+                            <div class="advantage-card" style="border: none; box-shadow: none;">
+                                <div class="advantage-icon"><i class="fas fa-expand"></i></div>
+                                <div class="advantage-title">Scalable Technology</div>
+                                <div class="advantage-description">Platform serves both B2C and B2B markets effectively</div>
+                            </div>
+                            <div class="advantage-card" style="border: none; box-shadow: none;">
+                                <div class="advantage-icon"><i class="fas fa-heart"></i></div>
+                                <div class="advantage-title">Social Impact</div>
+                                <div class="advantage-description">Enabling financial inclusion for 1.8 billion Muslims globally</div>
+                            </div>
+                            <div class="advantage-card" style="border: none; box-shadow: none;">
+                                <div class="advantage-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="advantage-title">Exit Opportunities</div>
+                                <div class="advantage-description">Acquisition targets include major banks, fintechs, and educational platforms</div>
+                            </div>
                         </div>
-                        <p style="margin-bottom: 1rem; font-weight: 600;">Integrated Education & Coaching Platform featuring:</p>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-check" style="color: #059669;"></i>
-                                <strong>Investment Simulator:</strong> Risk-free learning with £50K virtual portfolio
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-check" style="color: #059669;"></i>
-                                <strong>Halal Stock Screener:</strong> AI-powered Shariah compliance checking
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-check" style="color: #059669;"></i>
-                                <strong>Personal Coaching:</strong> 1-on-1 sessions with certified Islamic finance experts
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-check" style="color: #059669;"></i>
-                                <strong>Corporate Portal:</strong> Employee financial wellness programs with DEI impact
-                            </li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Description -->
+            <div id="company-description" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-building"></i></div>
+                        <div>
+                            <h2 class="section-title">Company Description</h2>
+                            <p class="section-subtitle">Building the future of Islamic finance education</p>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                            <div class="stat-value">2024</div>
+                            <div class="stat-label">Founded</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="stat-value">London</div>
+                            <div class="stat-label">Headquarters</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-building"></i></div>
+                            <div class="stat-value">Limited Company</div>
+                            <div class="stat-label">Legal Structure</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Co-Founders</div>
+                        </div>
+                    </div>
+
+                    <div class="text-content">
+                        <h3>Company Background</h3>
+                        <p>Founded in 2024, NISBA emerged from recognizing that while Islamic finance is a £2.4 trillion industry, millions of Muslims remain excluded due to complexity and lack of accessible education.</p>
+
+                        <h3>Legal Structure</h3>
+                        <ul>
+                            <li><strong>Entity:</strong> Limited Company (UK)</li>
+                            <li><strong>Directors:</strong> Ahmad Ayoubi, Adel Bereksi-Reguig</li>
+                            <li><strong>Headquarters:</strong> London, United Kingdom</li>
+                            <li><strong>Registration:</strong> Companies House (Registration pending)</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Core Values</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-mosque"></i></div>
+                            <div class="advantage-title">Authenticity</div>
+                            <div class="advantage-description">Genuine Shariah compliance backed by scholars</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="advantage-title">Education-First</div>
+                            <div class="advantage-description">Knowledge empowers better financial decisions</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-universal-access"></i></div>
+                            <div class="advantage-title">Accessibility</div>
+                            <div class="advantage-description">Making Islamic finance understandable for everyone</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="advantage-title">Technology</div>
+                            <div class="advantage-description">Leveraging innovation to scale personalized guidance</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-users"></i></div>
+                            <div class="advantage-title">Community</div>
+                            <div class="advantage-description">Building supportive networks for Muslim investors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Analysis -->
+            <div id="market-analysis" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-chart-bar"></i></div>
+                        <div>
+                            <h2 class="section-title">Market Analysis</h2>
+                            <p class="section-subtitle">Comprehensive analysis of the Islamic finance opportunity</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Total Addressable Market (TAM)</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                            <div class="stat-value">£2.4T</div>
+                            <div class="stat-label">Global Islamic Finance (15% annual growth)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-flag"></i></div>
+                            <div class="stat-value">£50B+</div>
+                            <div class="stat-label">UK Islamic Finance Assets</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-value">25M+</div>
+                            <div class="stat-label">European Muslim Population</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="stat-value">£13.2B</div>
+                            <div class="stat-label">UK Corporate Wellness Market</div>
+                        </div>
+                    </div>
+
+                    <div class="text-content">
+                        <h3>Serviceable Addressable Market (SAM)</h3>
+                        <ul>
+                            <li><strong>UK Muslims Aged 25-55:</strong> ~1.2 million potential individual users</li>
+                            <li><strong>UK Companies with 100+ Employees:</strong> ~15,000 potential corporate clients</li>
+                            <li><strong>European Expansion Opportunity:</strong> 5+ million Muslims in target demographics</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Target Customer Segments</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Individual Users (B2C)</h4>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <div class="stream-title">Advanced Certification</div>
+                            </div>
+                            <div class="stream-price">£499</div>
+                            <ul class="stream-features">
+                                <li>16-week comprehensive program</li>
+                                <li>Scholar-validated certificate</li>
+                                <li>1-year premium membership included</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Platform Partnerships</h4>
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>Investment Platform Referrals:</strong> 0.5-1% of assets invested</li>
+                            <li><strong>Educational Institution Licensing:</strong> £10-50K annual fees</li>
+                            <li><strong>API Access:</strong> £500-5K monthly for third-party integrations</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Unit Economics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                            <div class="stat-value">£45</div>
+                            <div class="stat-label">Customer Acquisition Cost (B2C)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-building"></i></div>
+                            <div class="stat-value">£850</div>
+                            <div class="stat-label">Customer Acquisition Cost (B2B)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-value">£890</div>
+                            <div class="stat-label">Lifetime Value (B2C)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                            <div class="stat-value">£12,500</div>
+                            <div class="stat-label">Lifetime Value (B2B)</div>
+                        </div>
+                    </div>
+
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>LTV/CAC Ratio:</strong> 19.8 (B2C), 14.7 (B2B)</li>
+                            <li><strong>Gross Margin:</strong> 85% (subscription), 95% (educational products)</li>
                         </ul>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Competitive Advantage -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h2 class="section-title">Competitive Advantage</h2>
-                </div>
-
-                <div class="advantage-list">
-                    <div class="advantage-item">
-                        <div class="advantage-number">1</div>
-                        <div class="advantage-text">First-mover advantage in comprehensive Islamic finance coaching</div>
-                    </div>
-                    <div class="advantage-item">
-                        <div class="advantage-number">2</div>
-                        <div class="advantage-text">Technology leadership with advanced screener and simulator</div>
-                    </div>
-                    <div class="advantage-item">
-                        <div class="advantage-number">3</div>
-                        <div class="advantage-text">Scholar validation ensuring authentic Shariah compliance</div>
-                    </div>
-                    <div class="advantage-item">
-                        <div class="advantage-number">4</div>
-                        <div class="advantage-text">Scalable model serving both individual and enterprise markets</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Team -->
-            <section id="team" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h2 class="section-title">Team & Expertise</h2>
-                </div>
-
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="member-name">Ahmad Ayoubi</div>
-                        <div class="member-title">CEO & Co-Founder</div>
-                        <div class="member-bio">10+ years in Islamic finance and fintech. MBA from London Business School. Expert in business strategy and Islamic finance regulations.</div>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="member-name">Adel Bereksi-Reguig</div>
-                        <div class="member-title">CTO & Co-Founder</div>
-                        <div class="member-bio">12+ years in technology and product development. Computer Science from Imperial College London. Expert in scalable platform architecture and AI/ML.</div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 2rem; background: #f8fafc; padding: 2rem; border-radius: 15px;">
-                    <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Team & Expertise</h4>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
-                        <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                            <i class="fas fa-check" style="color: var(--success-green); margin-top: 0.2rem;"></i>
-                            <span><strong>Islamic Finance Expertise:</strong> Partnerships with leading scholars and CFA-qualified professionals</span>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                            <i class="fas fa-check" style="color: var(--success-green); margin-top: 0.2rem;"></i>
-                            <span><strong>Technology Leadership:</strong> Experienced fintech development team</span>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                            <i class="fas fa-check" style="color: var(--success-green); margin-top: 0.2rem;"></i>
-                            <span><strong>Market Knowledge:</strong> Deep understanding of UK Muslim community needs</span>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                            <i class="fas fa-check" style="color: var(--success-green); margin-top: 0.2rem;"></i>
-                            <span><strong>Business Development:</strong> Proven track record in B2B and B2C growth</span>
+            <!-- Marketing & Sales Strategy -->
+            <div id="marketing-sales" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-bullhorn"></i></div>
+                        <div>
+                            <h2 class="section-title">Marketing & Sales Strategy</h2>
+                            <p class="section-subtitle">Go-to-market strategy and customer acquisition</p>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Business Model -->
-            <section id="business-model" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-coins"></i>
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Go-to-Market Strategy</h3>
+                    
+                    <div class="milestone-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Phase 1</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Community Building (Months 1-6)</div>
+                                <div class="timeline-description">
+                                    Content marketing, social media growth, webinar series, mosque partnerships
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Phase 2</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Product Launch (Months 7-12)</div>
+                                <div class="timeline-description">
+                                    Beta testing, influencer marketing, PR campaigns, corporate pilot programs
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Phase 3</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Scale & Expand (Months 13-24)</div>
+                                <div class="timeline-description">
+                                    Paid advertising, SEO optimization, conference speaking, international expansion
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="section-title">Business Model</h2>
-                </div>
 
-                <div class="business-model-grid">
-                    <div class="revenue-stream">
-                        <div class="stream-title">1. Individual Subscriptions</div>
-                        <div class="price-range">£29-99/month</div>
-                        <div class="stream-description">for coaching and premium features</div>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Sales Strategy</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">B2C Sales Process</h4>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-magnet"></i></div>
+                            <div class="advantage-title">Lead Generation</div>
+                            <div class="advantage-description">Content marketing, social media, referrals</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="advantage-title">Education</div>
+                            <div class="advantage-description">Free webinars and starter courses</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="advantage-title">Trial Conversion</div>
+                            <div class="advantage-description">14-day free trial of premium features</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-heart"></i></div>
+                            <div class="advantage-title">Retention</div>
+                            <div class="advantage-description">Ongoing coaching and community engagement</div>
+                        </div>
                     </div>
-                    <div class="revenue-stream">
-                        <div class="stream-title">2. Corporate Contracts</div>
-                        <div class="price-range">£5-15/employee/month</div>
-                        <div class="stream-description">for enterprise solutions</div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">B2B Sales Process</h4>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-search"></i></div>
+                            <div class="advantage-title">Lead Qualification</div>
+                            <div class="advantage-description">Target companies with 100+ employees</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-presentation"></i></div>
+                            <div class="advantage-title">Demo Presentation</div>
+                            <div class="advantage-description">Custom demos highlighting ROI and DEI benefits</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-flask"></i></div>
+                            <div class="advantage-title">Pilot Program</div>
+                            <div class="advantage-description">3-month trial with 20-50 employees</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="advantage-title">Contract Negotiation</div>
+                            <div class="advantage-description">Annual contracts with quarterly reviews</div>
+                        </div>
                     </div>
-                    <div class="revenue-stream">
-                        <div class="stream-title">3. Educational Courses</div>
-                        <div class="price-range">£199-499</div>
-                        <div class="stream-description">for comprehensive certification programs</div>
-                    </div>
-                    <div class="revenue-stream">
-                        <div class="stream-title">4. Platform Referrals</div>
-                        <div class="price-range">0.5-1%</div>
-                        <div class="stream-description">commission from halal investment platforms</div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Marketing Channels</h3>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-laptop"></i></div>
+                                <div class="stream-title">Digital Marketing</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>SEO optimization for halal investing keywords</li>
+                                <li>SEM campaigns on Google and Bing</li>
+                                <li>Social media advertising (LinkedIn, Meta)</li>
+                                <li>Influencer partnerships with Muslim content creators</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-pen"></i></div>
+                                <div class="stream-title">Content Marketing</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Educational blog posts and articles</li>
+                                <li>Video content and tutorials</li>
+                                <li>Podcasts on Islamic finance</li>
+                                <li>Whitepapers and research reports</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="stream-title">Partnership Marketing</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Collaborations with Islamic organizations</li>
+                                <li>Mosque community partnerships</li>
+                                <li>University Islamic societies</li>
+                                <li>Professional Muslim networks</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="stream-title">Event Marketing</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Islamic finance conferences</li>
+                                <li>Fintech meetups and events</li>
+                                <li>Corporate lunch-and-learns</li>
+                                <li>Community educational workshops</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- Operations Plan -->
+            <div id="operations" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-cogs"></i></div>
+                        <div>
+                            <h2 class="section-title">Operations Plan</h2>
+                            <p class="section-subtitle">Organizational structure and key processes</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Organizational Structure</h3>
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>Executive Team:</strong> CEO, CTO, Head of Education</li>
+                            <li><strong>Product Development:</strong> Engineers, designers, product managers</li>
+                            <li><strong>Education & Content:</strong> Scholars, content creators, coaches</li>
+                            <li><strong>Sales & Marketing:</strong> Sales managers, marketing specialists</li>
+                            <li><strong>Operations:</strong> Customer support, operations managers</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Key Operational Processes</h3>
+                    
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-book"></i></div>
+                                <div class="stream-title">Content Development</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Scholar Review Process: All content validated by Islamic finance experts</li>
+                                <li>Quality Assurance: Multi-stage review for accuracy and clarity</li>
+                                <li>Localization: Content adapted for different cultural contexts</li>
+                                <li>Regular Updates: Quarterly content refresh and expansion</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <div class="stream-title">Coaching Operations</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Coach Recruitment: CFA-qualified professionals with Islamic finance expertise</li>
+                                <li>Training Program: 40-hour certification in NISBA methodology</li>
+                                <li>Quality Monitoring: Regular session reviews and client feedback</li>
+                                <li>Performance Management: Coach scorecards and improvement plans</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-server"></i></div>
+                                <div class="stream-title">Technology Operations</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Platform Monitoring: 99.9% uptime with 24/7 system monitoring</li>
+                                <li>Data Security: Regular security audits and compliance checks</li>
+                                <li>Performance Optimization: Continuous improvement of load times</li>
+                                <li>Feature Development: Agile development with bi-weekly releases</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-headset"></i></div>
+                                <div class="stream-title">Customer Support</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Multi-Channel Support: Email, chat, phone, and video support</li>
+                                <li>Response Times: <2 hours for urgent, <24 hours for standard</li>
+                                <li>Knowledge Base: Comprehensive self-service resources</li>
+                                <li>Escalation Process: Clear pathways for complex issues</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Key Performance Indicators (KPIs)</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-user-friends"></i></div>
+                            <div class="advantage-title">User Engagement</div>
+                            <div class="advantage-description">Monthly active users, session duration</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="advantage-title">Learning Outcomes</div>
+                            <div class="advantage-description">Course completion rates, assessment scores</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="advantage-title">Coaching Effectiveness</div>
+                            <div class="advantage-description">Goal achievement rates, client satisfaction</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="advantage-title">Platform Performance</div>
+                            <div class="advantage-description">Uptime, load times, error rates</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-pound-sign"></i></div>
+                            <div class="advantage-title">Business Metrics</div>
+                            <div class="advantage-description">Revenue growth, churn rate, CAC, LTV</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Team -->
+            <div id="team" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h2 class="section-title">Management Team</h2>
+                            <p class="section-subtitle">Leadership expertise and advisory board</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Leadership Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">AA</div>
+                            <div class="member-name">Ahmad Ayoubi</div>
+                            <div class="member-role">CEO & Co-Founder</div>
+                            <div class="member-bio">
+                                10+ years in Islamic finance and fintech. MBA from London Business School. 
+                                Expert in business strategy and Islamic finance regulations. Previous senior roles 
+                                at Islamic banks and fintech startups.
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">AB</div>
+                            <div class="member-name">Adel Bereksi-Reguig</div>
+                            <div class="member-role">CTO & Co-Founder</div>
+                            <div class="member-bio">
+                                12+ years in technology and product development. Computer Science from Imperial College London. 
+                                Expert in scalable platform architecture and AI/ML applications. Tech lead at major 
+                                fintech and consulting firms.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Advisory Board</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">FA</div>
+                            <div class="member-name">Dr. Mufti Faraz Adam</div>
+                            <div class="member-role">Chief Shariah Advisor</div>
+                            <div class="member-bio">
+                                Leading Islamic finance scholar and educator. Author of multiple books on Islamic economics. 
+                                Consultant to major Islamic financial institutions worldwide.
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">SK</div>
+                            <div class="member-name">Sarah Khan</div>
+                            <div class="member-role">Head of Education</div>
+                            <div class="member-bio">
+                                PhD in Islamic Finance from University of Edinburgh. Former curriculum developer at 
+                                Islamic educational institutions. Expert in adult learning and professional development.
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">JM</div>
+                            <div class="member-name">James Mitchell</div>
+                            <div class="member-role">Commercial Advisor</div>
+                            <div class="member-bio">
+                                Former VP of Sales at major B2B SaaS companies. Expert in scaling subscription businesses. 
+                                Strong network in UK corporate market.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Organizational Chart</h3>
+                    <div class="interactive-chart">
+                        <h4>NISBA Organizational Structure</h4>
+                        <div class="chart-placeholder">
+                            <div style="text-align: left; max-width: 800px;">
+                                <strong>CEO (Ahmad Ayoubi)</strong><br>
+                                ├── <strong>CTO (Adel Bereksi-Reguig)</strong><br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Engineering Team (5-8 developers)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Product Team (2-3 product managers)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;└── Data Team (2-3 analysts)<br>
+                                ├── <strong>Head of Education (Sarah Khan)</strong><br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Content Team (3-5 creators)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Coaching Team (8-12 coaches)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;└── Scholar Advisory Panel (3-5 scholars)<br>
+                                ├── <strong>Head of Sales & Marketing</strong><br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Sales Team (3-5 managers)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;├── Marketing Team (3-4 specialists)<br>
+                                │&nbsp;&nbsp;&nbsp;&nbsp;└── Customer Success (2-3 managers)<br>
+                                └── <strong>Head of Operations</strong><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Customer Support (3-5 agents)<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Operations Team (2-3 managers)<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Finance & Admin (2-3 staff)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Financial Projections -->
-            <section id="financials" class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h2 class="section-title">Financial Projections (3-Year)</h2>
-                </div>
-
-                <div class="section-content">
-                    <div class="financial-table-container">
-                        <div class="table-controls">
-                            <div class="view-toggle">
-                                <button class="view-btn active" onclick="showTableView()">Table View</button>
-                                <button class="view-btn" onclick="showChartView()">Chart View</button>
-                            </div>
-                            <div style="font-size: 0.9rem; color: var(--light-gray);">
-                                <i class="fas fa-info-circle"></i> Interactive financial projections
-                            </div>
-                        </div>
-
-                        <div class="financial-table" id="tableView">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Metric</th>
-                                        <th>Year 1</th>
-                                        <th>Year 2</th>
-                                        <th>Year 3</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Revenue</strong></td>
-                                        <td class="number">£285K</td>
-                                        <td class="number">£1.2M</td>
-                                        <td class="number">£3.8M</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Users</strong></td>
-                                        <td class="number">1,200</td>
-                                        <td class="number">8,500</td>
-                                        <td class="number">25,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Corporate Clients</strong></td>
-                                        <td class="number">5</td>
-                                        <td class="number">25</td>
-                                        <td class="number">75</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Coaches</strong></td>
-                                        <td class="number">8</td>
-                                        <td class="number">35</td>
-                                        <td class="number">120</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Mobile Financial Cards -->
-                        <div class="mobile-financial-cards" id="mobileFinancials">
-                            <div class="financial-card">
-                                <div class="financial-card-header">Year 1 Projections</div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Revenue</span>
-                                    <span class="metric-value">£285K</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Users</span>
-                                    <span class="metric-value">1,200</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Corporate Clients</span>
-                                    <span class="metric-value">5</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Coaches</span>
-                                    <span class="metric-value">8</span>
-                                </div>
-                            </div>
-
-                            <div class="financial-card">
-                                <div class="financial-card-header">Year 2 Projections</div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Revenue</span>
-                                    <span class="metric-value">£1.2M</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Users</span>
-                                    <span class="metric-value">8,500</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Corporate Clients</span>
-                                    <span class="metric-value">25</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Coaches</span>
-                                    <span class="metric-value">35</span>
-                                </div>
-                            </div>
-
-                            <div class="financial-card">
-                                <div class="financial-card-header">Year 3 Projections</div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Revenue</span>
-                                    <span class="metric-value">£3.8M</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Users</span>
-                                    <span class="metric-value">25,000</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Corporate Clients</span>
-                                    <span class="metric-value">75</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <span class="metric-label">Coaches</span>
-                                    <span class="metric-value">120</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="chart-view" id="chartView">
-                            <div class="chart-placeholder">
-                                <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                                <h3 style="margin-bottom: 0.5rem;">Interactive Growth Visualization</h3>
-                                <p style="margin: 0; opacity: 0.8;">Revenue growth from £285K to £3.8M over 3 years</p>
-                            </div>
+            <div id="financials" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-calculator"></i></div>
+                        <div>
+                            <h2 class="section-title">Financial Projections</h2>
+                            <p class="section-subtitle">3-year revenue forecasts and financial model</p>
                         </div>
                     </div>
 
-                    <div class="detailed-breakdown" id="detailedBreakdown" style="display: none; margin-top: 2rem;">
-                        <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">
-                            <i class="fas fa-chart-bar" style="margin-right: 0.5rem;"></i>
-                            Detailed Financial Breakdown
-                        </h3>
-                        
-                        <div style="background: #f8fafc; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem;">
-                            <h4 style="color: var(--warm-gray); margin-bottom: 1rem;">Revenue Stream Analysis</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 10px;">
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">£185K</div>
-                                    <div style="font-size: 0.9rem; color: var(--light-gray);">Individual Subscriptions (Year 1)</div>
-                                </div>
-                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 10px;">
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">£100K</div>
-                                    <div style="font-size: 0.9rem; color: var(--light-gray);">Corporate Contracts (Year 1)</div>
-                                </div>
-                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 10px;">
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--success-green);">£650K</div>
-                                    <div style="font-size: 0.9rem; color: var(--light-gray);">B2C Revenue (Year 2)</div>
-                                </div>
-                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 10px;">
-                                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--success-green);">£550K</div>
-                                    <div style="font-size: 0.9rem; color: var(--light-gray);">B2B Revenue (Year 2)</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: var(--light-blue); padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem;">
-                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Key Financial Assumptions</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                                <div>
-                                    <strong style="color: var(--warm-gray);">B2C Growth:</strong>
-                                    <p style="margin: 0.5rem 0 0 0; color: var(--light-gray); font-size: 0.9rem;">50% monthly user growth, £65 average monthly revenue per user</p>
-                                </div>
-                                <div>
-                                    <strong style="color: var(--warm-gray);">B2B Growth:</strong>
-                                    <p style="margin: 0.5rem 0 0 0; color: var(--light-gray); font-size: 0.9rem;">5 new corporate clients per quarter, £2,000 average monthly revenue per client</p>
-                                </div>
-                                <div>
-                                    <strong style="color: var(--warm-gray);">Churn Rates:</strong>
-                                    <p style="margin: 0.5rem 0 0 0; color: var(--light-gray); font-size: 0.9rem;">8% monthly (B2C), 15% annual (B2B)</p>
-                                </div>
-                                <div>
-                                    <strong style="color: var(--warm-gray);">Gross Margins:</strong>
-                                    <p style="margin: 0.5rem 0 0 0; color: var(--light-gray); font-size: 0.9rem;">85% for subscriptions, 95% for educational products</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: #f0fdf4; padding: 2rem; border-radius: 15px;">
-                            <h4 style="color: var(--success-green); margin-bottom: 1rem;">Unit Economics</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.8rem; font-weight: bold; color: var(--success-green);">£45</div>
-                                    <div style="font-size: 0.9rem; color: var(--warm-gray);">Customer Acquisition Cost (B2C)</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.8rem; font-weight: bold; color: var(--success-green);">£890</div>
-                                    <div style="font-size: 0.9rem; color: var(--warm-gray);">Lifetime Value (B2C)</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.8rem; font-weight: bold; color: var(--success-green);">19.8x</div>
-                                    <div style="font-size: 0.9rem; color: var(--warm-gray);">LTV/CAC Ratio (B2C)</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.8rem; font-weight: bold; color: var(--success-green);">85%</div>
-                                    <div style="font-size: 0.9rem; color: var(--warm-gray);">Gross Margin</div>
-                                </div>
-                            </div>
-                        </div>
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Revenue Projections (3-Year)</h3>
+                    <div class="financial-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Individual Users</th>
+                                    <th>Corporate Clients</th>
+                                    <th>Revenue Breakdown</th>
+                                    <th>Total Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Year 1</strong></td>
+                                    <td class="metric-value">1,200 users</td>
+                                    <td class="metric-value">5 companies</td>
+                                    <td>B2C: £185K, B2B: £100K</td>
+                                    <td class="metric-positive"><strong>£285K</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Year 2</strong></td>
+                                    <td class="metric-value">8,500 users</td>
+                                    <td class="metric-value">25 companies</td>
+                                    <td>B2C: £650K, B2B: £550K</td>
+                                    <td class="metric-positive"><strong>£1.2M</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Year 3</strong></td>
+                                    <td class="metric-value">25,000 users</td>
+                                    <td class="metric-value">75 companies</td>
+                                    <td>B2C: £1.8M, B2B: £2.0M</td>
+                                    <td class="metric-positive"><strong>£3.8M</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <button class="section-collapsible" onclick="toggleDetailedBreakdown()" id="breakdownToggle">
-                        <i class="fas fa-chevron-down" style="margin-right: 0.5rem;"></i>
-                        Show detailed breakdown
-                    </button>
-                </div>
-            </section>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Detailed Financial Model</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Year 1 Financial Projections</h4>
+                    <div class="financial-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"><strong>Revenue</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Individual Subscriptions</td>
+                                    <td class="metric-positive">£185,000</td>
+                                    <td>65%</td>
+                                </tr>
+                                <tr>
+                                    <td>Corporate Contracts</td>
+                                    <td class="metric-positive">£100,000</td>
+                                    <td>35%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Revenue</strong></td>
+                                    <td class="metric-positive"><strong>£285,000</strong></td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><strong>Expenses</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Salaries & Benefits</td>
+                                    <td>£180,000</td>
+                                    <td>63%</td>
+                                </tr>
+                                <tr>
+                                    <td>Technology Infrastructure</td>
+                                    <td>£35,000</td>
+                                    <td>12%</td>
+                                </tr>
+                                <tr>
+                                    <td>Marketing & Sales</td>
+                                    <td>£45,000</td>
+                                    <td>16%</td>
+                                </tr>
+                                <tr>
+                                    <td>Operations</td>
+                                    <td>£25,000</td>
+                                    <td>9%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Expenses</strong></td>
+                                    <td><strong>£285,000</strong></td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Net Profit</strong></td>
+                                    <td class="metric-value"><strong>£0 (Break-even)</strong></td>
+                                    <td>0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-            <!-- Key Milestones -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-flag-checkered"></i>
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Year 2 & 3 Summary</h4>
+                    <div class="financial-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Year 2</th>
+                                    <th>Year 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Total Revenue</strong></td>
+                                    <td class="metric-positive">£1,200,000</td>
+                                    <td class="metric-positive">£3,800,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Expenses</strong></td>
+                                    <td>£750,000</td>
+                                    <td>£1,850,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Net Profit</strong></td>
+                                    <td class="metric-positive">£450,000</td>
+                                    <td class="metric-positive">£1,950,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Net Margin</strong></td>
+                                    <td class="metric-positive">37.5%</td>
+                                    <td class="metric-positive">51.3%</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <h2 class="section-title">Key Milestones</h2>
-                </div>
 
-                <div class="milestone-grid">
-                    <div class="milestone-box" style="background: #f0fdf4; border-left: 4px solid var(--success-green);">
-                        <div style="font-weight: bold; color: var(--success-green); margin-bottom: 0.5rem;">Q2 2025</div>
-                        <div style="color: var(--warm-gray);">Beta platform launch with 100 users</div>
-                    </div>
-                    <div class="milestone-box" style="background: #fef3f2; border-left: 4px solid #f59e0b;">
-                        <div style="font-weight: bold; color: #f59e0b; margin-bottom: 0.5rem;">Q3 2025</div>
-                        <div style="color: var(--warm-gray);">Corporate pilot programs with 3 companies</div>
-                    </div>
-                    <div class="milestone-box" style="background: var(--light-blue); border-left: 4px solid var(--primary-blue);">
-                        <div style="font-weight: bold; color: var(--primary-blue); margin-bottom: 0.5rem;">Q4 2025</div>
-                        <div style="color: var(--warm-gray);">1,000+ individual users, 5 corporate clients</div>
-                    </div>
-                    <div class="milestone-box" style="background: #fdf4ff; border-left: 4px solid #a855f7;">
-                        <div style="font-weight: bold; color: #a855f7; margin-bottom: 0.5rem;">Q1 2026</div>
-                        <div style="color: var(--warm-gray);">Series A funding round for international expansion</div>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Key Financial Assumptions</h3>
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>B2C Growth:</strong> 50% monthly user growth, £65 average monthly revenue per user</li>
+                            <li><strong>B2B Growth:</strong> 5 new corporate clients per quarter, £2,000 average monthly revenue per client</li>
+                            <li><strong>Churn Rates:</strong> 8% monthly (B2C), 15% annual (B2B)</li>
+                            <li><strong>Gross Margins:</strong> 85% for subscriptions, 95% for educational products</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- Funding Requirements -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-pound-sign"></i>
+            <div id="funding" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <div>
+                            <h2 class="section-title">Funding Requirements</h2>
+                            <p class="section-subtitle">Investment needs and strategic use of capital</p>
+                        </div>
                     </div>
-                    <h2 class="section-title">Funding Requirements</h2>
-                </div>
 
-                <div style="background: var(--light-blue); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
-                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary-blue); margin-bottom: 1rem;">£750,000 Seed Round</div>
-                    <div style="font-size: 1.2rem; color: var(--warm-gray); margin-bottom: 1rem;">for:</div>
-                </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-pound-sign"></i></div>
+                            <div class="stat-value">£750,000</div>
+                            <div class="stat-label">Total Funding Required</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-seedling"></i></div>
+                            <div class="stat-value">Seed Round</div>
+                            <div class="stat-label">Funding Stage</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
+                            <div class="stat-value">16.7%</div>
+                            <div class="stat-label">Equity Offered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-calculator"></i></div>
+                            <div class="stat-value">£4.5M</div>
+                            <div class="stat-label">Post-Money Valuation</div>
+                        </div>
+                    </div>
 
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-code"></i>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Use of Funds</h3>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="stream-title">Product Development (40%)</div>
+                            </div>
+                            <div class="stream-price">£300,000</div>
+                            <ul class="stream-features">
+                                <li>Platform development and enhancement</li>
+                                <li>Mobile app development</li>
+                                <li>AI/ML capabilities for screening</li>
+                                <li>Security and compliance infrastructure</li>
+                            </ul>
                         </div>
-                        <div class="feature-content">
-                            <h4>Platform Development (40%)</h4>
-                            <p>Core technology development and mobile applications</p>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-book"></i></div>
+                                <div class="stream-title">Content & Education (25%)</div>
+                            </div>
+                            <div class="stream-price">£187,500</div>
+                            <ul class="stream-features">
+                                <li>Scholar partnerships and content validation</li>
+                                <li>Video production and educational materials</li>
+                                <li>Coach training and certification programs</li>
+                                <li>Curriculum development and localization</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-bullhorn"></i></div>
+                                <div class="stream-title">Marketing & Customer Acquisition (20%)</div>
+                            </div>
+                            <div class="stream-price">£150,000</div>
+                            <ul class="stream-features">
+                                <li>Digital marketing campaigns</li>
+                                <li>Content marketing and SEO</li>
+                                <li>Conference participation and PR</li>
+                                <li>Partnership development</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-users"></i></div>
+                                <div class="stream-title">Team & Operations (15%)</div>
+                            </div>
+                            <div class="stream-price">£112,500</div>
+                            <ul class="stream-features">
+                                <li>Key hire salaries for first 12 months</li>
+                                <li>Office setup and operational expenses</li>
+                                <li>Legal, accounting, and professional services</li>
+                                <li>Working capital and contingency</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Content & Scholar Partnerships (25%)</h4>
-                            <p>Educational content creation and validation</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Marketing & Customer Acquisition (20%)</h4>
-                            <p>Brand building and user acquisition campaigns</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Team Expansion (15%)</h4>
-                            <p>Key hires and operational scaling</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Why Invest -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-rocket"></i>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Funding Timeline</h3>
+                    <div class="milestone-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Month 1-3</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Seed funding completion</div>
+                                <div class="timeline-description">Close £750K seed round with strategic investors</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Month 4-6</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Team expansion and platform development</div>
+                                <div class="timeline-description">Hire key team members and accelerate product development</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Month 7-12</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Beta launch and initial customer acquisition</div>
+                                <div class="timeline-description">Launch beta platform and acquire first 1,000 users</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Month 13-18</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Scale operations and prepare for Series A</div>
+                                <div class="timeline-description">Achieve product-market fit and prepare for growth funding</div>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="section-title">Why Invest in NISBA?</h2>
-                </div>
 
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Massive Market:</strong> Underserved £2.4T Islamic finance opportunity
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Proven Demand:</strong> Strong interest validation through existing 400+ educational videos
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Scalable Technology:</strong> Platform serves both B2C and B2B markets effectively
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Social Impact:</strong> Enabling financial inclusion for 1.8 billion Muslims globally
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">5</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Exit Opportunities:</strong> Acquisition targets include major banks, fintechs, and educational platforms
-                        </div>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Investment Terms (Indicative)</h3>
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>Funding Stage:</strong> Seed Round</li>
+                            <li><strong>Valuation:</strong> £3.75M pre-money, £4.5M post-money</li>
+                            <li><strong>Equity Offered:</strong> 16.7%</li>
+                            <li><strong>Investor Rights:</strong> Board observer seat, information rights, anti-dilution protection</li>
+                        </ul>
                     </div>
                 </div>
-            </section>                    <div class="milestone-box" style="background: #fdf4ff; border-left: 4px solid #a855f7;">
-                        <div style="font-weight: bold; color: #a855f7; margin-bottom: 0.5rem;">Q1 2026</div>
-                        <div style="color: var(--warm-gray);">Series A funding round for international expansion</div>
-                    </div>
-                </div>
-            </section>
+            </div>
 
-            <!-- Why Invest -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-rocket"></i>
+            <!-- Risk Analysis -->
+            <div id="risk-analysis" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <h2 class="section-title">Risk Analysis</h2>
+                            <p class="section-subtitle">Risk factors and comprehensive mitigation strategies</p>
+                        </div>
                     </div>
-                    <h2 class="section-title">Why Invest in NISBA?</h2>
-                </div>
 
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Massive Market:</strong> Underserved £2.4T Islamic finance opportunity
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Business Risks</h3>
+                    
+                    <div class="risk-grid">
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="risk-title">Market Risks</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Competition from large financial institutions</div>
+                                <div class="risk-mitigation">Mitigation: Build strong moats through technology and scholar relationships</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Economic downturn reducing spending on financial education</div>
+                                <div class="risk-mitigation">Mitigation: Focus on ROI-driven corporate clients, offer flexible pricing</div>
+                            </div>
+                        </div>
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon"><i class="fas fa-server"></i></div>
+                                <div class="risk-title">Technical Risks</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Platform scalability issues during rapid growth</div>
+                                <div class="risk-mitigation">Mitigation: Cloud-native architecture with auto-scaling capabilities</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Data security breaches affecting user trust</div>
+                                <div class="risk-mitigation">Mitigation: SOC 2 compliance, regular security audits, cyber insurance</div>
+                            </div>
+                        </div>
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon"><i class="fas fa-gavel"></i></div>
+                                <div class="risk-title">Regulatory Risks</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Potential financial services licensing requirements</div>
+                                <div class="risk-mitigation">Mitigation: Legal counsel monitoring, focus on education vs. advice</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">GDPR and UK data protection compliance</div>
+                                <div class="risk-mitigation">Mitigation: Privacy-by-design architecture, regular compliance reviews</div>
+                            </div>
+                        </div>
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon"><i class="fas fa-users"></i></div>
+                                <div class="risk-title">Operational Risks</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Key person dependency on founders and scholars</div>
+                                <div class="risk-mitigation">Mitigation: Document processes, build strong advisory board</div>
+                            </div>
+                            <div class="risk-item">
+                                <div class="risk-name">Inconsistent coaching quality affecting satisfaction</div>
+                                <div class="risk-mitigation">Mitigation: Rigorous training, quality monitoring, performance management</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Proven Demand:</strong> Strong interest validation through existing 400+ educational videos
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Scalable Technology:</strong> Platform serves both B2C and B2B markets effectively
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Social Impact:</strong> Enabling financial inclusion for 1.8 billion Muslims globally
-                        </div>
-                    </div>
-                    <div class="investment-reason-item">
-                        <div style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">5</div>
-                        <div style="color: var(--warm-gray);">
-                            <strong>Exit Opportunities:</strong> Acquisition targets include major banks, fintechs, and educational platforms
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Contact -->
-            <section id="contact" class="contact-section">
-                <h2 class="contact-title">Ready to Transform Islamic Finance Education?</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Join us in democratizing halal investing for millions of Muslims worldwide</p>
-                
-                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
-                    <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
-                        <strong>Ahmad Ayoubi & Adel Bereksi-Reguig</strong><br>
-                        NISBA Co-Founders
-                    </p>
-                </div>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>hello@nisba.co.uk</span>
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Risk Mitigation Strategies</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-chart-pie"></i></div>
+                            <div class="advantage-title">Diversified Revenue Streams</div>
+                            <div class="advantage-description">Reduce dependency on single source</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-users-cog"></i></div>
+                            <div class="advantage-title">Strong Advisory Board</div>
+                            <div class="advantage-description">Access to expertise and network</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="advantage-title">Robust Technology</div>
+                            <div class="advantage-description">Scalable, secure, and reliable platform</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-calculator"></i></div>
+                            <div class="advantage-title">Financial Controls</div>
+                            <div class="advantage-description">Conservative cash management and regular reviews</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-umbrella"></i></div>
+                            <div class="advantage-title">Insurance Coverage</div>
+                            <div class="advantage-description">Professional indemnity, cyber, and D&O insurance</div>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+44 XXX XXX XXXX</span>
+                </div>
+            </div>
+
+            <!-- Growth Strategy -->
+            <div id="growth-strategy" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                        <div>
+                            <h2 class="section-title">Growth Strategy</h2>
+                            <p class="section-subtitle">Expansion roadmap and strategic initiatives</p>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-globe"></i>
-                        <span>www.nisba.co.uk</span>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Expansion Roadmap</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Phase 1: UK Market Leadership (Years 1-2)</h4>
+                    <div class="text-content">
+                        <ul>
+                            <li>Establish dominant position in UK Islamic finance education</li>
+                            <li>Build network of 50+ certified coaches</li>
+                            <li>Achieve 10,000+ individual users and 50+ corporate clients</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Phase 2: European Expansion (Years 2-3)</h4>
+                    <div class="text-content">
+                        <ul>
+                            <li>Launch in Germany, France, and Netherlands</li>
+                            <li>Localize content for different Islamic communities</li>
+                            <li>Establish partnerships with European Islamic organizations</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Phase 3: Global Platform (Years 3-5)</h4>
+                    <div class="text-content">
+                        <ul>
+                            <li>Expand to US, Canada, and Australia markets</li>
+                            <li>Develop region-specific compliance and content</li>
+                            <li>Build international coach certification program</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Strategic Initiatives</h3>
+                    
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-rocket"></i></div>
+                                <div class="stream-title">Product Innovation</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Mobile App Development: Native iOS and Android applications</li>
+                                <li>AI-Powered Recommendations: Personalized investment suggestions</li>
+                                <li>Blockchain Integration: Transparent Shariah compliance tracking</li>
+                                <li>VR/AR Training: Immersive investment simulation experiences</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="stream-title">Partnership Development</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Islamic Banks: Content licensing and customer referrals</li>
+                                <li>Fintech Companies: API integrations and co-marketing</li>
+                                <li>Educational Institutions: Curriculum licensing and student programs</li>
+                                <li>Corporate Benefits Platforms: Integration with existing HR systems</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="stream-title">Market Development</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>New Customer Segments: Students, retirees, high-net-worth individuals</li>
+                                <li>Adjacent Markets: Islamic business finance, Waqf management</li>
+                                <li>B2B2C Opportunities: White-label solutions for financial advisors</li>
+                                <li>Government Partnerships: Financial literacy programs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Success Metrics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-percentage"></i></div>
+                            <div class="stat-value">25%</div>
+                            <div class="stat-label">UK Islamic finance education market share by Year 3</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-value">100K+</div>
+                            <div class="stat-label">Registered users globally by Year 5</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-pound-sign"></i></div>
+                            <div class="stat-value">£15M+</div>
+                            <div class="stat-label">Annual recurring revenue by Year 5</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                            <div class="stat-value">10+</div>
+                            <div class="stat-label">Countries with operations by Year 5</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Conclusion</h3>
+                    <div class="section-card" style="background: var(--light-blue); margin-top: 2rem;">
+                        <div class="text-content">
+                            <p>NISBA represents a significant opportunity to transform Islamic finance education and democratize halal investing for millions of Muslims worldwide. Our comprehensive platform, combining education, technology, and personalized coaching, addresses a clear market need with substantial growth potential.</p>
+                            
+                            <p>With proven demand validation through our existing content library, strong founding team expertise, and clear path to profitability, NISBA is positioned to become the global leader in Islamic finance education and coaching.</p>
+                            
+                            <p><strong>We invite investors to join us in building a platform that not only generates strong financial returns but also creates meaningful social impact by enabling financial inclusion for the global Muslim community.</strong></p>
+                        </div>
+                        
+                        <div class="text-content" style="margin-top: 2rem; text-align: center;">
+                            <h4 style="color: var(--primary-blue);">Contact Information</h4>
+                            <p><strong>NISBA Ltd.</strong><br>
+                            Email: hello@nisba.co.uk<br>
+                            Phone: +44 XXX XXX XXXX<br>
+                            Website: www.nisba.co.uk</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>For Investment Inquiries:</strong><br>
+                            Ahmad Ayoubi, CEO: ahmad@nisba.co.uk<br>
+                            Adel Bereksi-Reguig, CTO: adel@nisba.co.uk</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">
-                        <em>This executive summary supports our comprehensive demo platform available at: [Demo Link]</em>
-                    </p>
-                </div>
-            </section>
+            </div>
         </div>
-
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
     </main>
 
+    <!-- Navigation Controls -->
+    <div class="section-nav">
+        <button class="nav-btn" onclick="previousSection()" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-btn" onclick="nextSection()" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('mobile-open');
-        }
+        // Section management
+        const sections = [
+            'executive-summary', 'company-description', 'market-analysis', 
+            'product-technology', 'business-model', 'marketing-sales', 
+            'operations', 'team', 'financials', 'funding', 'risk-analysis', 'growth-strategy'
+        ];
+        let currentSectionIndex = 0;
 
-        // Smooth scrolling to sections
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
+        // Enhanced navigation function with proper section isolation
+        function navigateToSection(sectionId, element) {
+            // Update current section index
+            currentSectionIndex = sections.indexOf(sectionId);
+            
+            // Hide all sections completely
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            
+            // Show only the selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.style.display = 'block';
+            }
+            
+            // Update TOC active state
+            document.querySelectorAll('.toc-item').forEach(item => {
+                item.classList.remove('active');
+            });
             if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                document.getElementById('navLinks').classList.remove('mobile-open');
+                element.classList.add('active');
             }
-        }
-
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Scroll to top of page smoothly
+            window.scrollTo({ 
+                top: 0, 
+                behavior: 'smooth' 
             });
+            
+            // Save position
+            savePosition();
         }
 
-        // Financial table/chart view toggle
-        function showTableView() {
-            const tableView = document.getElementById('tableView');
-            const chartView = document.getElementById('chartView');
-            const mobileCards = document.getElementById('mobileFinancials');
-            
-            if (window.innerWidth <= 768) {
-                // Mobile: show cards
-                tableView.style.display = 'none';
-                mobileCards.style.display = 'block';
-            } else {
-                // Desktop: show table
-                tableView.style.display = 'block';
-                mobileCards.style.display = 'none';
-            }
-            chartView.style.display = 'none';
-            
-            const buttons = document.querySelectorAll('.view-btn');
-            buttons[0].classList.add('active');
-            buttons[1].classList.remove('active');
+        function showSection(sectionId) {
+            // Find the corresponding TOC element
+            const tocElement = document.querySelector(`[onclick*="${sectionId}"]`);
+            navigateToSection(sectionId, tocElement);
         }
 
-        function showChartView() {
-            document.getElementById('tableView').style.display = 'none';
-            document.getElementById('mobileFinancials').style.display = 'none';
-            document.getElementById('chartView').style.display = 'block';
-            
-            const buttons = document.querySelectorAll('.view-btn');
-            buttons[0].classList.remove('active');
-            buttons[1].classList.add('active');
-        }
-
-        // Toggle detailed breakdown
-        function toggleDetailedBreakdown() {
-            const breakdown = document.getElementById('detailedBreakdown');
-            const toggle = document.getElementById('breakdownToggle');
-            
-            if (breakdown.style.display === 'none' || breakdown.style.display === '') {
-                breakdown.style.display = 'block';
-                toggle.innerHTML = '<i class="fas fa-chevron-up" style="margin-right: 0.5rem;"></i>Hide detailed breakdown';
-            } else {
-                breakdown.style.display = 'none';
-                toggle.innerHTML = '<i class="fas fa-chevron-down" style="margin-right: 0.5rem;"></i>Show detailed breakdown';
+        function nextSection() {
+            if (currentSectionIndex < sections.length - 1) {
+                currentSectionIndex++;
+                const nextSectionId = sections[currentSectionIndex];
+                const tocElement = document.querySelector(`[onclick*="${nextSectionId}"]`);
+                navigateToSection(nextSectionId, tocElement);
             }
         }
 
-        // Animation on scroll
-        function animateOnScroll() {
-            const sections = document.querySelectorAll('.section');
-            const windowHeight = window.innerHeight;
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionVisible = 150;
-                
-                if (sectionTop < windowHeight - sectionVisible) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+        function previousSection() {
+            if (currentSectionIndex > 0) {
+                currentSectionIndex--;
+                const prevSectionId = sections[currentSectionIndex];
+                const tocElement = document.querySelector(`[onclick*="${prevSectionId}"]`);
+                navigateToSection(prevSectionId, tocElement);
+            }
+        }
+
+        function nextSection() {
+            if (currentSectionIndex < sections.length - 1) {
+                currentSectionIndex++;
+                const nextSectionId = sections[currentSectionIndex];
+                const tocElement = document.querySelector(`[onclick*="${nextSectionId}"]`);
+                navigateToSection(nextSectionId, tocElement);
+            }
+        }
+
+        function previousSection() {
+            if (currentSectionIndex > 0) {
+                currentSectionIndex--;
+                const prevSectionId = sections[currentSectionIndex];
+                const tocElement = document.querySelector(`[onclick*="${prevSectionId}"]`);
+                navigateToSection(prevSectionId, tocElement);
+            }
+        }
+
+        function updateTOCActive() {
+            document.querySelectorAll('.toc-item').forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentSectionIndex) {
+                    item.classList.add('active');
                 }
             });
-
-            // Show/hide back to top button
-            const backToTop = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
         }
 
-        // Initialize
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSectionIndex === 0;
+            nextBtn.disabled = currentSectionIndex === sections.length - 1;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousSection();
+            } else if (e.key === 'ArrowRight') {
+                nextSection();
+            }
+        });
+
+        // Print functionality
+        function printBusinessPlan() {
+            window.print();
+        }
+
+        // Add print button to header
         document.addEventListener('DOMContentLoaded', function() {
-            // Set initial animation state
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-
-            // Animate visible sections
-            animateOnScroll();
+            const navLinks = document.querySelector('.nav-links');
+            const printBtn = document.createElement('li');
+            printBtn.innerHTML = '<a href="#" onclick="printBusinessPlan()"><i class="fas fa-print"></i> Print</a>';
+            navLinks.insertBefore(printBtn, navLinks.lastElementChild);
             
-            // Add scroll listener
-            window.addEventListener('scroll', animateOnScroll);
+            // Initialize navigation
+            updateNavigationButtons();
+        });
 
-            // Handle responsive table display
-            function handleResponsiveTable() {
-                const tableView = document.getElementById('tableView');
-                const mobileCards = document.getElementById('mobileFinancials');
-                const chartView = document.getElementById('chartView');
-                
-                if (window.innerWidth <= 768 && chartView.style.display !== 'block') {
-                    tableView.style.display = 'none';
-                    mobileCards.style.display = 'block';
-                } else if (window.innerWidth > 768 && chartView.style.display !== 'block') {
-                    tableView.style.display = 'block';
-                    mobileCards.style.display = 'none';
-                }
-            }
-
-            // Handle window resize
-            window.addEventListener('resize', handleResponsiveTable);
-            handleResponsiveTable(); // Initial call
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const nav = document.querySelector('.nav');
-                const navLinks = document.getElementById('navLinks');
-                
-                if (!nav.contains(event.target) && navLinks.classList.contains('mobile-open')) {
-                    navLinks.classList.remove('mobile-open');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Add smooth hover effects
+        // Auto-save reading position
+        function savePosition() {
+            localStorage.setItem('nisba-business-plan-position', currentSectionIndex);
+        }
+
+        function loadPosition() {
+            const saved = localStorage.getItem('nisba-business-plan-position');
+            if (saved) {
+                currentSectionIndex = parseInt(saved);
+                showSection(sections[currentSectionIndex]);
+                updateTOCActive();
+            }
+        }
+
+        // Save position when section changes
+        window.addEventListener('beforeunload', savePosition);
+
+        // Load saved position on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.stat-card, .feature-item, .team-member');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
+            setTimeout(loadPosition, 100);
+        });
+
+        // Add click handlers to TOC items
+        document.querySelectorAll('.toc-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                showSection(sections[index]);
+                updateTOCActive();
             });
         });
     </script>
 </body>
 </html>
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-user-graduate"></i></div>
+                                <div class="stream-title">Young Professionals (25-35)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Income: £35K-75K annually</li>
+                                <li>Tech-savvy, values-conscious</li>
+                                <li>Size: ~400K individuals in UK</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-user-tie"></i></div>
+                                <div class="stream-title">Established Career Muslims (35-50)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Income: £50K-150K annually</li>
+                                <li>Family-focused, wealth-building stage</li>
+                                <li>Size: ~300K individuals in UK</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-crown"></i></div>
+                                <div class="stream-title">High-Net-Worth Muslims (50+)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Income: £100K+ annually</li>
+                                <li>Legacy and Zakat planning focus</li>
+                                <li>Size: ~100K individuals in UK</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Corporate Clients (B2B)</h4>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="stream-title">Tech Companies (100-1000 employees)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Diversity-focused, progressive policies</li>
+                                <li>Size: ~2,000 companies in UK</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-university"></i></div>
+                                <div class="stream-title">Financial Services (500+ employees)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Regulatory compliance focus</li>
+                                <li>Size: ~500 companies in UK</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-hospital"></i></div>
+                                <div class="stream-title">Healthcare & Education (1000+ employees)</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Employee welfare prioritization</li>
+                                <li>Size: ~1,500 organizations in UK</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Market Drivers</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="advantage-title">Growing Muslim Population</div>
+                            <div class="advantage-description">6.5% of UK population, fastest-growing demographic</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-piggy-bank"></i></div>
+                            <div class="advantage-title">Wealth Accumulation</div>
+                            <div class="advantage-description">Increasing Muslim affluence and investment interest</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="advantage-title">ESG Investment Trend</div>
+                            <div class="advantage-description">Ethical investing mainstream adoption</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-balance-scale"></i></div>
+                            <div class="advantage-title">Corporate DEI Focus</div>
+                            <div class="advantage-description">Companies prioritizing inclusive benefits</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-gavel"></i></div>
+                            <div class="advantage-title">Regulatory Support</div>
+                            <div class="advantage-description">UK government promoting Islamic finance</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Competitive Landscape</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Direct Competitors</h4>
+                    <div class="risk-grid">
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon" style="color: var(--primary-blue);"><i class="fas fa-robot"></i></div>
+                                <div class="risk-title">Wahed Invest</div>
+                            </div>
+                            <div class="risk-item" style="background: var(--light-blue); border-left-color: var(--primary-blue);">
+                                <div class="risk-name">Robo-advisor with limited education</div>
+                                <div class="risk-mitigation">Weakness: No coaching or corporate solutions</div>
+                            </div>
+                        </div>
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon" style="color: var(--primary-blue);"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="risk-title">Islamicly</div>
+                            </div>
+                            <div class="risk-item" style="background: var(--light-blue); border-left-color: var(--primary-blue);">
+                                <div class="risk-name">Stock screening app</div>
+                                <div class="risk-mitigation">Weakness: No comprehensive education or coaching</div>
+                            </div>
+                        </div>
+                        <div class="risk-category">
+                            <div class="risk-header">
+                                <div class="risk-icon" style="color: var(--primary-blue);"><i class="fas fa-filter"></i></div>
+                                <div class="risk-title">Musaffa</div>
+                            </div>
+                            <div class="risk-item" style="background: var(--light-blue); border-left-color: var(--primary-blue);">
+                                <div class="risk-name">Stock screening platform</div>
+                                <div class="risk-mitigation">Weakness: Limited to screening, no wealth management</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Competitive Advantages</h4>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-trophy"></i></div>
+                            <div class="advantage-title">Comprehensive Platform</div>
+                            <div class="advantage-description">Only solution combining education, tools, and coaching</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="advantage-title">Technology Leadership</div>
+                            <div class="advantage-description">Advanced screener and simulator capabilities</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="advantage-title">Scholar Network</div>
+                            <div class="advantage-description">Authentic Shariah compliance validation</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-building"></i></div>
+                            <div class="advantage-title">Corporate Focus</div>
+                            <div class="advantage-description">Unique B2B offering in the market</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-users"></i></div>
+                            <div class="advantage-title">Community Building</div>
+                            <div class="advantage-description">Social learning and peer support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product & Technology -->
+            <div id="product-technology" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div>
+                            <h2 class="section-title">Product & Technology</h2>
+                            <p class="section-subtitle">Comprehensive platform with four core modules</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Platform Overview</h3>
+                    <div class="text-content">
+                        <p>NISBA's integrated platform consists of four core modules designed to provide comprehensive Islamic finance education and coaching services.</p>
+                    </div>
+
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-user-graduate"></i></div>
+                                <div class="stream-title">Individual Learning Portal</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Investment Simulator: £50K virtual portfolio for risk-free learning</li>
+                                <li>Educational Content: 400+ videos, articles, and interactive lessons</li>
+                                <li>Progress Tracking: Personalized learning paths with achievements</li>
+                                <li>Zakat Calculator: Automated obligation calculation with guidance</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-filter"></i></div>
+                                <div class="stream-title">Halal Investment Screener</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>AI-Powered Screening: Automated Shariah compliance analysis</li>
+                                <li>Real-Time Data: Live stock prices and compliance status</li>
+                                <li>Custom Filters: Debt ratios, sector exclusions, strict mode</li>
+                                <li>Scholar Validation: Regular review by Islamic finance experts</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <div class="stream-title">Personal Coaching System</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>1-on-1 Sessions: Video calls with certified coaches</li>
+                                <li>Progress Monitoring: Goal tracking and accountability check-ins</li>
+                                <li>Resource Sharing: Customized materials and action plans</li>
+                                <li>Performance Analytics: Detailed coaching outcome reporting</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-building"></i></div>
+                                <div class="stream-title">Corporate Wellness Portal</div>
+                            </div>
+                            <ul class="stream-features">
+                                <li>Employee Dashboards: Individual learning and progress tracking</li>
+                                <li>HR Analytics: Department-level engagement and completion metrics</li>
+                                <li>White-Label Options: Branded portals for enterprise clients</li>
+                                <li>Integration APIs: Connection with existing HR systems</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Technology Stack</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fab fa-react"></i></div>
+                            <div class="advantage-title">Frontend</div>
+                            <div class="advantage-description">React.js with responsive design</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fab fa-node-js"></i></div>
+                            <div class="advantage-title">Backend</div>
+                            <div class="advantage-description">Node.js with microservices architecture</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-database"></i></div>
+                            <div class="advantage-title">Database</div>
+                            <div class="advantage-description">PostgreSQL for structured data, MongoDB for content</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fab fa-aws"></i></div>
+                            <div class="advantage-title">Infrastructure</div>
+                            <div class="advantage-description">AWS with auto-scaling capabilities</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="advantage-title">Security</div>
+                            <div class="advantage-description">End-to-end encryption, SOC 2 compliance</div>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="advantage-title">Mobile</div>
+                            <div class="advantage-description">React Native for iOS and Android</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem 0; color: var(--warm-gray);">Intellectual Property</h3>
+                    <div class="text-content">
+                        <ul>
+                            <li><strong>Proprietary Screening Algorithm:</strong> Advanced Shariah compliance detection</li>
+                            <li><strong>Educational Content:</strong> Original curricula developed with scholars</li>
+                            <li><strong>Coaching Methodology:</strong> Structured accountability framework</li>
+                            <li><strong>Brand & Trademarks:</strong> NISBA name and visual identity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Model -->
+            <div id="business-model" class="content-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon"><i class="fas fa-coins"></i></div>
+                        <div>
+                            <h2 class="section-title">Business Model</h2>
+                            <p class="section-subtitle">Multiple revenue streams with strong unit economics</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 0 0 1rem 0; color: var(--warm-gray);">Revenue Streams</h3>
+                    
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Individual Subscriptions (B2C)</h4>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="stream-title">Basic Plan</div>
+                            </div>
+                            <div class="stream-price">£29/month</div>
+                            <ul class="stream-features">
+                                <li>Investment simulator access</li>
+                                <li>Educational content library</li>
+                                <li>Basic Zakat calculator</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-star"></i></div>
+                                <div class="stream-title">Premium Plan</div>
+                            </div>
+                            <div class="stream-price">£59/month</div>
+                            <ul class="stream-features">
+                                <li>All Basic features</li>
+                                <li>Advanced screener with alerts</li>
+                                <li>Monthly group coaching sessions</li>
+                                <li>Priority support</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-crown"></i></div>
+                                <div class="stream-title">Coaching Plan</div>
+                            </div>
+                            <div class="stream-price">£99/month</div>
+                            <ul class="stream-features">
+                                <li>All Premium features</li>
+                                <li>Monthly 1-on-1 coaching sessions</li>
+                                <li>Personalized investment plans</li>
+                                <li>Unlimited messaging support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Corporate Contracts (B2B)</h4>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-building"></i></div>
+                                <div class="stream-title">Starter Package</div>
+                            </div>
+                            <div class="stream-price">£5/employee/month</div>
+                            <ul class="stream-features">
+                                <li>Basic educational content</li>
+                                <li>Progress tracking dashboard</li>
+                                <li>Standard reporting</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-briefcase"></i></div>
+                                <div class="stream-title">Professional Package</div>
+                            </div>
+                            <div class="stream-price">£10/employee/month</div>
+                            <ul class="stream-features">
+                                <li>Advanced learning modules</li>
+                                <li>Manager training programs</li>
+                                <li>Detailed analytics and reporting</li>
+                                <li>Integration support</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-trophy"></i></div>
+                                <div class="stream-title">Enterprise Package</div>
+                            </div>
+                            <div class="stream-price">£15/employee/month</div>
+                            <ul class="stream-features">
+                                <li>Full platform access</li>
+                                <li>White-label branding</li>
+                                <li>Dedicated account management</li>
+                                <li>Custom content development</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Educational Products</h4>
+                    <div class="business-model-grid">
+                        <div class="revenue-stream">
+                            <div class="stream-header">
+                                <div class="stream-icon"><i class="fas fa-certificate"></i></div>
+                                <div class="stream-title">Foundation Course</div>
+                            </div>
+                            <div class="stream-price">£199</div>
+                            <ul class="stream-features">
+                                <li>8-week self-paced program</li>
+                                <li>Certificate of completion</li>
+                                <li>Basic community access</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-stream">
